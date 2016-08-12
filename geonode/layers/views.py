@@ -24,6 +24,7 @@ import logging
 import shutil
 import traceback
 from guardian.shortcuts import get_perms
+import decimal
 
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -676,6 +677,14 @@ def layer_list(request):
 
 def get_layer(request, layername):
     """Get Layer object as JSON"""
+
+    # Function to treat Decimal in json.dumps.
+    # http://stackoverflow.com/a/16957370/1198772
+    def decimal_default(obj):
+        if isinstance(obj, decimal.Decimal):
+            return float(obj)
+        raise TypeError
+
     logger.debug('Call get layer')
     if request.method == 'GET':
         layer_obj = _resolve_layer(request, layername)
@@ -693,7 +702,9 @@ def get_layer(request, layername):
         }
         return HttpResponse(json.dumps(
             response,
-            ensure_ascii=False),
+            ensure_ascii=False,
+            default=decimal_default
+        ),
             content_type='application/javascript')
 def layer_metadata_detail(request, layername, template='layers/layer_metadata_detail.html'):
     layer = _resolve_layer(request, layername, 'view_resourcebase', _PERMISSION_MSG_METADATA)
