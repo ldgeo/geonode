@@ -21,7 +21,6 @@
 # Django settings for the GeoNode project.
 import os
 
-from celery.schedules import crontab
 from kombu import Queue
 import geonode
 from geonode.celery_app import app  # flake8: noqa
