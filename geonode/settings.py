@@ -339,7 +339,7 @@ LOGGING = {
             'class': 'django.utils.log.NullHandler',
         },
         'console': {
-            'level': 'DEBUG',
+            'level': 'ERROR',
             'class': 'logging.StreamHandler',
             'formatter': 'simple'
         },
@@ -352,7 +352,7 @@ LOGGING = {
         "django": {
             "handlers": ["console"], "level": "ERROR", },
         "geonode": {
-            "handlers": ["console"], "level": "DEBUG", },
+            "handlers": ["console"], "level": "ERROR", },
         "gsconfig.catalog": {
             "handlers": ["console"], "level": "ERROR", },
         "owslib": {
@@ -951,19 +951,6 @@ if 'geonode.geoserver' in INSTALLED_APPS:
     baselayers = MAP_BASELAYERS
     MAP_BASELAYERS = [LOCAL_GEOSERVER]
     MAP_BASELAYERS.extend(baselayers)
-
-# QGIS Server Backend
-# The QGIS server URL might be overridden in local_settings.py.
-if 'geonode_qgis_server' in INSTALLED_APPS:
-    tiles_directory = os.path.join(PROJECT_ROOT, "qgis_tiles")
-    QGIS_SERVER_CONFIG = {
-        'tiles_directory': tiles_directory,
-        'tile_path': tiles_directory + '/%s/%d/%d/%d.png',
-        'legend_path': tiles_directory + '/%s/legend.png',
-        'thumbnail_path': tiles_directory + '/%s/thumbnail.png',
-        'qgis_server_url': 'http://127.0.0.1/cgi-bin/qgis_mapserv.fcgi',
-        'layer_directory': os.path.join(PROJECT_ROOT, "qgis_layer")
-    }
 
 # Load more settings from a file called local_settings.py if it exists
 try:

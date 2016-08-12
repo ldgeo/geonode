@@ -382,7 +382,6 @@ def file_upload(filename, name=None, user=None, title=None, abstract=None,
     # Create a new upload session
     upload_session = UploadSession.objects.create(user=theuser)
 
-    logger.debug('Filename to upload: %s' % filename)
     # Get all the files uploaded with the layer
     files = get_files(filename)
 
