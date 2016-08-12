@@ -236,7 +236,7 @@ GEONODE_APPS = (
     'geonode.services',
 
     # QGIS Server Apps
-    'geonode.qgis_server',
+    'geonode_qgis_server',
 
     # GeoServer Apps
     # Geoserver needs to come last because
@@ -955,7 +955,7 @@ if 'geonode.geoserver' in INSTALLED_APPS:
 
 # QGIS Server Backend
 # The QGIS server URL might be overridden in local_settings.py.
-if 'geonode.qgis_server' in INSTALLED_APPS:
+if 'geonode_qgis_server' in INSTALLED_APPS:
     tiles_directory = os.path.join(PROJECT_ROOT, "qgis_tiles")
     QGIS_SERVER_CONFIG = {
         'tiles_directory': tiles_directory,
