@@ -21,7 +21,6 @@ geonode/static/geoexplorer/
 geonode/static_root/
 geonode/static/node_modules/
 node_modules/
-geonode/qgis_tiles
 # Listing all of them instead of putting geonode/static/lib out of version control.
 geonode/local_settings.py
 geonode/static/lib/css/jquery-ui.css
@@ -56,7 +55,6 @@ geonode/static/lib/js/moment.min.js
 
 # Uploaded files
 geonode/uploaded
-geonode/qgis_layer
 
 #Testing output
 .coverage
