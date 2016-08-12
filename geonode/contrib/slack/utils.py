@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #########################################################################
 #
-# Copyright (C) 2012 OpenPlans
+# Copyright (C) 2016 OSGeo
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -28,7 +28,10 @@ from django.conf import settings
 from django.contrib.sites.models import Site
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse
-from django.utils import simplejson as json
+try:
+    import json
+except ImportError:
+    from django.utils import simplejson as json
 from .enumerations import SLACK_MESSAGE_TEMPLATES
 
 from geonode.base.models import Link
@@ -59,7 +62,9 @@ def _build_state_layer(layer):
 
     state = _build_state_resourcebase(layer)
 
-    url_detail = "{base}{context}".format(base=settings.SITEURL[:-1], context=layer.detail_url)
+    url_detail = "{base}{context}".format(
+        base=settings.SITEURL[:-1],
+        context=reverse('layer_detail', args=(layer.service_typename,)))
     link_shp = Link.objects.get(resource=layer.get_self_resource(), name='Zipped Shapefile')
     link_geojson = Link.objects.get(resource=layer.get_self_resource(), name='GeoJSON')
     link_netkml = Link.objects.get(resource=layer.get_self_resource(), name='View in Google Earth')
