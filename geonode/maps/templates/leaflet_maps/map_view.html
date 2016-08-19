@@ -132,35 +132,6 @@
         jQuery.fn.extend({
             propAttr: $.fn.prop || $.fn.attr
         });
-        function layer_name_autocomplete() {
-            $("#new_layer").autocomplete({
-                source: function (request, response) {
-                    $.ajax({
-                        url: "/layers/list",
-                        dataType: "jsonp",
-                        data: {
-                            q: request.term
-                        },
-                        success: function (data) {
-                            alert(data);
-                            response(data);
-                        }
-                    });
-                },
-                minLength: 3,
-                select: function (event, ui) {
-
-                },
-                open: function () {
-                    $(this).removeClass("ui-corner-all").addClass("ui-corner-top");
-                },
-                close: function () {
-                    $(this).removeClass("ui-corner-top").addClass("ui-corner-all");
-                }
-            })
-        }
-    </script>
-    <script type="text/javascript">
         var map = $("#map");
         var active_background_layer;
 
@@ -456,7 +427,6 @@
             });
         }
 
-
         $(document).ready(function () {
             // Initiate map
             {% if create %}
@@ -583,8 +553,7 @@
             {% endif %}
 
         });
-    </script>
-    <script type="text/javascript">
+
         $("#add_layer_button").click(function () {
             // Get value from select option
             {#            var add_layer_select = $('select[id=add_layer_select]');#}
