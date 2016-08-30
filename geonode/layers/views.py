@@ -66,10 +66,9 @@ from geonode.geoserver.helpers import cascading_delete, gs_catalog
 
 CONTEXT_LOG_FILE = None
 
-if 'geonode.geoserver' in settings.INSTALLED_APPS:
-    from geonode.geoserver.helpers import _render_thumbnail
-    from geonode.geoserver.helpers import ogc_server_settings
-    CONTEXT_LOG_FILE = ogc_server_settings.LOG_FILE
+from geonode.geoserver.helpers import _render_thumbnail
+from geonode.geoserver.helpers import ogc_server_settings
+CONTEXT_LOG_FILE = ogc_server_settings.LOG_FILE
 
 logger = logging.getLogger("geonode.layers.views")
 
